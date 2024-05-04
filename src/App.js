@@ -1,13 +1,16 @@
 import "./App.css";
 import Header from "./components/Header/Header";
 import Title from "./components/Layout/Title";
+import CartProvider from "./store/CartProvider";
 
 function App() {
   return (
-    <div>
+    <CartProvider>
       <Header />
-      <Title />
-    </div>
+      <main>
+        <Title />
+      </main>
+    </CartProvider>
   );
 }
 

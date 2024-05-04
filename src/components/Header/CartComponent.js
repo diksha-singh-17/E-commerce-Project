@@ -1,63 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
+import CartContext from "../../store/CartContext";
 
 const CartComponent = (props) => {
-  const cartElements = [
-    {
-      title: "Colors",
-      id: 3,
-      price: 100,
+  const cartCntxt = useContext(CartContext);
 
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-
-      quantity: 2,
-    },
-
-    {
-      id: 2,
-      title: "Black and white Colors",
-
-      price: 50,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-
-      quantity: 3,
-    },
-
-    {
-      id: 1,
-      title: "Yellow and Black Colors",
-
-      price: 70,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-
-      quantity: 1,
-    },
-  ];
   const [show, setShow] = useState(false);
-  const [items, setItems] = useState(cartElements);
+  // const [items, setItems] = useState(cartElements);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const removeItemsHandler = (id) => {
-    setItems(items.filter((item) => item.id !== id));
-  };
+  //  using the filter method to create a new array excluding the item with the provided id, and then updates the state with the new array.
 
+  const removeItemsHandler = (id) => {
+    cartCntxt.deleteItem(id);
+    // setCartItems(cartCntxt.items.filter((item) => item.id !== id));
+  };
+  const lengthOfArray = cartCntxt.items.length;
   return (
     <>
       <Button variant="outline-info" onClick={handleShow}>
         Cart
       </Button>
+      <p className="text-info">{lengthOfArray}</p>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Cart</Modal.Title>
@@ -69,7 +40,7 @@ const CartComponent = (props) => {
             <Col>Quantity</Col>
           </Row>
           <Row>
-            {items.map((i) => {
+            {cartCntxt.items.map((i) => {
               return (
                 <>
                   <Col
