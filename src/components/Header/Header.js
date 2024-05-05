@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Cart from "./Cart";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -11,18 +12,24 @@ const Header = () => {
         as="ul"
       >
         <Nav.Item>
-          <Nav.Link href="/home" as="li" className="text-white ">
-            Home
+          <Nav.Link href="/home" as="li">
+            <NavLink to="/" className="text-decoration-none text-white">
+              Home
+            </NavLink>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-1" as="li" className="text-white">
-            Store
+          <Nav.Link eventKey="/store" as="li">
+            <NavLink className="text-decoration-none text-white" to="/store">
+              Store
+            </NavLink>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-2" as="li" className="text-white">
-            About
+          <Nav.Link as="li">
+            <NavLink to="/about" className="text-decoration-none text-white">
+              About
+            </NavLink>
           </Nav.Link>
         </Nav.Item>
         <Cart />

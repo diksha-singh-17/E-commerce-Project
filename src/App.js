@@ -1,7 +1,9 @@
 import "./App.css";
 import Header from "./components/Header/Header";
 import Title from "./components/Layout/Title";
+import MusicComponent from "./components/UI/MusicComponent";
 import CartProvider from "./store/CartProvider";
+import Footer from "./components/Layout/Footer";
 
 function App() {
   return (
@@ -9,6 +11,8 @@ function App() {
       <Header />
       <main>
         <Title />
+        <MusicComponent />
+        <Footer />
       </main>
     </CartProvider>
   );

@@ -1,7 +1,5 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import MusicComponent from "../UI/MusicComponent";
-import Footer from "./Footer";
 
 const Title = () => {
   return (
@@ -11,8 +9,6 @@ const Title = () => {
           <h1>The Generics.</h1>
         </Card.Body>
       </Card>
-      <MusicComponent />
-      <Footer />
     </>
   );
 };
