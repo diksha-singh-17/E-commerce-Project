@@ -13,7 +13,7 @@ const Header = () => {
       >
         <Nav.Item>
           <Nav.Link href="/home" as="li">
-            <NavLink to="/" className="text-decoration-none text-white">
+            <NavLink to="/home" className="text-decoration-none text-white">
               Home
             </NavLink>
           </Nav.Link>

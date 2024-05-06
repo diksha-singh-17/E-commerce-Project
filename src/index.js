@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./components/Layout/About";
 import Store from "./components/Layout/Store";
+import Home from "./components/Layout/Home";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/store",
     element: <Store />,
+  },
+  {
+    path: "/home",
+    element: <Home />,
   },
 ]);
 
