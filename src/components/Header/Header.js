@@ -32,6 +32,13 @@ const Header = () => {
             </NavLink>
           </Nav.Link>
         </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as="li">
+            <NavLink to="/contact" className="text-decoration-none text-white">
+              Contact Us
+            </NavLink>
+          </Nav.Link>
+        </Nav.Item>
         <Cart />
       </Nav>
     </>
