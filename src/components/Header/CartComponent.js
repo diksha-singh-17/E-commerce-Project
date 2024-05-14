@@ -25,10 +25,13 @@ const CartComponent = (props) => {
   const lengthOfArray = cartCntxt.items.length;
   return (
     <>
-      <Button variant="outline-info" onClick={handleShow}>
-        Cart
-      </Button>
-      <p className="text-info">{lengthOfArray}</p>
+      <div className="d-flex justify-content-end">
+        <Button variant="outline-info" onClick={handleShow}>
+          Cart
+        </Button>
+        <p className="text-info">{lengthOfArray}</p>
+      </div>
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Cart</Modal.Title>

@@ -9,6 +9,8 @@ import About from "./components/Layout/About";
 import Store from "./components/Layout/Store";
 import Home from "./components/Layout/Home";
 import ContactUs from "./components/Layout/ContactUs";
+import Product from "./components/Layout/Product";
+import { Switch } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -25,11 +27,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
+    exact: true,
     element: <Home />,
   },
   {
     path: "/contact",
     element: <ContactUs />,
+  },
+  {
+    path: "/product/:productId",
+    element: <Product />,
   },
 ]);
 

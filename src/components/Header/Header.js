@@ -8,7 +8,7 @@ const Header = () => {
     <>
       <Nav
         className="justify-content-center bg-dark fw-bold p-2"
-        activeKey="/home"
+        activeKey="/"
         as="ul"
       >
         <Nav.Item>
@@ -27,7 +27,11 @@ const Header = () => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link as="li">
-            <NavLink to="/about" className="text-decoration-none text-white">
+            <NavLink
+              activeClassName="active"
+              to="/about"
+              className="text-decoration-none text-white"
+            >
               About
             </NavLink>
           </Nav.Link>
@@ -39,7 +43,9 @@ const Header = () => {
             </NavLink>
           </Nav.Link>
         </Nav.Item>
-        <Cart />
+        <div className="d-flex justify-content-end">
+          <Cart />
+        </div>
       </Nav>
     </>
   );
