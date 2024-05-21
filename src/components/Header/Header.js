@@ -38,6 +38,13 @@ const Header = () => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link as="li">
+            <NavLink to="/login" className="text-decoration-none text-white">
+              Login
+            </NavLink>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as="li">
             <NavLink to="/contact" className="text-decoration-none text-white">
               Contact Us
             </NavLink>

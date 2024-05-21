@@ -11,6 +11,7 @@ import Home from "./components/Layout/Home";
 import ContactUs from "./components/Layout/ContactUs";
 import Product from "./components/Layout/Product";
 import { Switch } from "react-router-dom";
+import Login from "./components/UI/Login";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/product/:productId",
     element: <Product />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
