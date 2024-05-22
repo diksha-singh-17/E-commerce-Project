@@ -32,6 +32,9 @@ const Login = () => {
       })
       .then((data) => {
         console.log(data);
+        if (data.error) {
+          throw new Error(data.error.message);
+        }
         localStorage.setItem("token-ecom", data.idToken);
         const has_token = localStorage.getItem("token-ecom");
         if (has_token && !data.error) {
@@ -39,7 +42,7 @@ const Login = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.message);
       });
   };
   return (

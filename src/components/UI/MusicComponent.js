@@ -6,10 +6,14 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import CartContext from "../../store/CartContext";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
+import Login from "./Login";
 
 const MusicComponent = () => {
   const modalCntxt = useContext(CartContext);
+
+  const tokenId = localStorage.getItem("token-ecom");
   const productsArr = [
     {
       id: 23,
@@ -71,15 +75,27 @@ const MusicComponent = () => {
                   <>
                     <Col md={6} key={i.title}>
                       <h1>{i.title}</h1>
-                      <Link to={"/product/" + id++}>
-                        <Image
-                          src={i.imageUrl}
-                          alt="not present"
-                          className="w-50 mb-2"
-                        />
-                      </Link>
+
+                      <Image
+                        src={i.imageUrl}
+                        alt="not present"
+                        className="w-50 mb-2"
+                      />
+
                       <div className="d-flex justify-content-around">
                         <h5>${i.price}</h5>
+
+                        {!tokenId && (
+                          <Link to={"/login"}>
+                            {" "}
+                            <p>Login to view more</p>
+                          </Link>
+                        )}
+                        {tokenId && (
+                          <Link to={"/product/" + id++}>
+                            <p>View More</p>
+                          </Link>
+                        )}
                         <Button
                           onClick={() => {
                             addItemToCartHandler(
