@@ -32,6 +32,7 @@ const Login = () => {
       })
       .then((data) => {
         console.log(data);
+        localStorage.setItem("email-ecom", data.email);
         if (data.error) {
           throw new Error(data.error.message);
         }

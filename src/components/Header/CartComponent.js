@@ -9,20 +9,50 @@ import CartContext from "../../store/CartContext";
 
 const CartComponent = (props) => {
   const cartCntxt = useContext(CartContext);
-
+  const [cartNewData, setCartNewData] = useState([]);
   const [show, setShow] = useState(false);
   // const [items, setItems] = useState(cartElements);
-
+  const emailId = localStorage.getItem("email-ecom");
+  const regex = /([A-Z a-z 0-9])/g;
+  const extractedData = emailId.match(regex);
+  const newEmail = extractedData.join("");
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+
+    fetch(
+      `https://crudcrud.com/api/8e1de02ebe554c8b9155338b80d82ee1/cart${newEmail}`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setCartNewData(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   //  using the filter method to create a new array excluding the item with the provided id, and then updates the state with the new array.
 
   const removeItemsHandler = (id) => {
     cartCntxt.deleteItem(id);
     // setCartItems(cartCntxt.items.filter((item) => item.id !== id));
+    fetch(
+      `https://crudcrud.com/api/8e1de02ebe554c8b9155338b80d82ee1/cart${newEmail}/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((res) => {
+        setCartNewData(cartNewData);
+      })
+      .catch((error) => console.log(error.message));
   };
-  const lengthOfArray = cartCntxt.items.length;
+
+  const lengthOfArray = cartNewData.length;
   return (
     <>
       <div className="d-flex justify-content-end">
@@ -43,16 +73,16 @@ const CartComponent = (props) => {
             <Col>Quantity</Col>
           </Row>
           <Row>
-            {cartCntxt.items.map((i) => {
+            {cartNewData.map((i) => {
               return (
                 <>
                   <Col
                     md={12}
-                    key={i.id}
+                    key={i._id}
                     className="d-flex justify-content-around h-100 p-2"
                   >
                     <Image
-                      src={i.imageUrl}
+                      src={i.url}
                       alt="not present"
                       className="w-25 h-25"
                     />
@@ -63,7 +93,7 @@ const CartComponent = (props) => {
                       {" "}
                       <Button
                         variant="danger"
-                        onClick={() => removeItemsHandler(i.id)}
+                        onClick={() => removeItemsHandler(i._id)}
                       >
                         Remove
                       </Button>

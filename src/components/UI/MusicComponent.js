@@ -6,9 +6,7 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import CartContext from "../../store/CartContext";
-import { Link, Navigate } from "react-router-dom";
-import { redirect } from "react-router-dom";
-import Login from "./Login";
+import { Link } from "react-router-dom";
 
 const MusicComponent = () => {
   const modalCntxt = useContext(CartContext);
@@ -60,6 +58,38 @@ const MusicComponent = () => {
       quantity: quantity,
       id: id,
     });
+    const userDetails = {
+      title: title,
+      price: price,
+      url: url,
+      quantity: quantity,
+      id: id,
+    };
+    const data = JSON.stringify(userDetails);
+    // localStorage.setItem(userDetails.email, data);
+    console.log(data);
+    const emailId = localStorage.getItem("email-ecom");
+    console.log(emailId);
+    const regex = /([A-Z a-z 0-9])/g;
+    const extractedData = emailId.match(regex);
+    console.log(extractedData.join(""));
+    const newEmail = extractedData.join("");
+    fetch(
+      `https://crudcrud.com/api/8e1de02ebe554c8b9155338b80d82ee1/cart${newEmail}`,
+      {
+        method: "POST",
+        body: JSON.stringify(userDetails),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        console.info(response);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
