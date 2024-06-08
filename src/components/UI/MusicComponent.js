@@ -96,7 +96,7 @@ const MusicComponent = () => {
     <>
       <Card className="text-center p-4">
         <Card.Body>
-          <h1>Music</h1>
+          <h1>Fashion</h1>
 
           <Container>
             <Row className="p-4">

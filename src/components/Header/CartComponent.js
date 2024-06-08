@@ -14,12 +14,12 @@ const CartComponent = (props) => {
   // const [items, setItems] = useState(cartElements);
   const emailId = localStorage.getItem("email-ecom");
   const regex = /([A-Z a-z 0-9])/g;
-  const extractedData = emailId.match(regex);
-  const newEmail = extractedData.join("");
+
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
-
+    const extractedData = emailId.match(regex);
+    const newEmail = extractedData.join("");
     fetch(
       `https://crudcrud.com/api/8e1de02ebe554c8b9155338b80d82ee1/cart${newEmail}`
     )
@@ -39,6 +39,8 @@ const CartComponent = (props) => {
 
   const removeItemsHandler = (id) => {
     cartCntxt.deleteItem(id);
+    const extractedData = emailId.match(regex);
+    const newEmail = extractedData.join("");
     // setCartItems(cartCntxt.items.filter((item) => item.id !== id));
     fetch(
       `https://crudcrud.com/api/8e1de02ebe554c8b9155338b80d82ee1/cart${newEmail}/${id}`,
